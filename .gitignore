@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+*.egg-info/
+dist/
+*.egg
+
+# 虚拟环境
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 数据文件
+data/*.csv
+data/*.json
+data/*.db
+data/.checkpoint.json
+
+# 日志
+logs/
+*.log
+
+# 报告输出
+reports/charts/*.png
+reports/*.md
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints
+
+# 测试
+.pytest_cache/
+.coverage
+htmlcov/
