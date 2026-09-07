@@ -5,6 +5,7 @@
 import asyncio
 import aiohttp
 import json
+import time
 from typing import List, Dict, Optional
 from pathlib import Path
 from tqdm import tqdm
@@ -108,7 +109,7 @@ class AsyncDoubanScraper:
         start = page_num * ScraperConfig.MOVIES_PER_PAGE
         url = f"{ScraperConfig.BASE_URL}?start={start}&filter="
         
-        logger.info(f"开始爬取第 {page_num + 1}/10 页 (start={start})")
+        logger.info(f"开始爬取第 {page_num + 1}/{ScraperConfig.TOTAL_PAGES} 页 (start={start})")
         
         html = await self.fetch_page(url, page_num)
         
@@ -188,7 +189,7 @@ class AsyncDoubanScraper:
             checkpoint_data = {
                 'completed_pages': completed_pages,
                 'total_movies': len(self.all_movies),
-                'timestamp': str(asyncio.get_event_loop().time())
+                'timestamp': str(time.time())
             }
             
             with open(self.checkpoint_file, 'w', encoding='utf-8') as f:
