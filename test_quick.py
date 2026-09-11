@@ -45,11 +45,9 @@ def test_imports():
         from analyzer.visualizer import DataVisualizer
         print("✓ analyzer.visualizer 模块导入成功")
         
-        return True
-        
     except ImportError as e:
         print(f"✗ 导入失败: {e}")
-        return False
+        assert False, f"ImportError: {e}"
 
 
 def test_helpers():
@@ -73,8 +71,6 @@ def test_helpers():
     assert extract_year("1994") == "1994"
     assert extract_year("1994年") == "1994"
     print("✓ extract_year 函数正常")
-    
-    return True
 
 
 def test_config():
@@ -92,8 +88,6 @@ def test_config():
     
     assert AnalysisConfig.DPI == 300
     print("✓ AnalysisConfig 配置正确")
-    
-    return True
 
 
 def main():
@@ -111,8 +105,8 @@ def main():
     results = []
     for name, test_func in tests:
         try:
-            result = test_func()
-            results.append((name, result))
+            test_func()
+            results.append((name, True))
         except Exception as e:
             print(f"✗ {name} 测试异常: {e}")
             results.append((name, False))
